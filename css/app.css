@@ -1,0 +1,327 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+  font-family: 'Coda', cursive;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+.matchingGame{
+  background: #02b3e4;
+}
+p {
+
+  color: red;
+  font-weight: 200;
+}
+
+/*
+* Styles for the deck of cards
+*/
+
+.deck {
+  width: 660px;
+  min-height: 680px;
+  background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+  padding: 32px;
+  border-radius: 10px;
+  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 3em;
+}
+
+.deck .card {
+  height: 125px;
+  width: 125px;
+  background: #2e3d49;
+  font-size: 0;
+  color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+  background: #02b3e4;
+  cursor: default;
+}
+
+.deck .card.show {
+  font-size: 33px;
+}
+
+.deck .card.match {
+  cursor: default;
+  background: #02cc5d;
+  font-size: 33px;
+  animation: match-shake 0.5s;
+  
+}
+
+.deck .card.notMathched {
+  background:rgb(94, 10, 28);
+  transition: 100ms linear;
+  border-radius: 0;
+  animation: shake 0.5s;
+  
+}
+
+.deck .card.disabled {
+pointer-events: none;
+}
+
+
+/*
+ * No Match shake animation. From https://www.w3schools.com/howto/howto_css_shake_image.asp
+ */
+
+ @keyframes shake {
+  0% {
+      transform: translate(1px, 1px) rotate(0deg);
+  }
+
+  10% {
+      transform: translate(-1px, -2px) rotate(-1deg);
+  }
+
+  20% {
+      transform: translate(-3px, 0px) rotate(1deg);
+  }
+
+  30% {
+      transform: translate(3px, 2px) rotate(0deg);
+  }
+
+  40% {
+      transform: translate(1px, -1px) rotate(1deg);
+  }
+
+  50% {
+      transform: translate(-1px, 2px) rotate(-1deg);
+  }
+
+  60% {
+      transform: translate(-3px, 1px) rotate(0deg);
+  }
+
+  70% {
+      transform: translate(3px, 1px) rotate(-1deg);
+  }
+
+  80% {
+      transform: translate(-1px, -1px) rotate(1deg);
+  }
+
+  90% {
+      transform: translate(1px, 2px) rotate(0deg);
+  }
+
+  100% {
+      transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+/*
+* Match shake animation
+*/
+
+@keyframes match-shake {
+
+  0%,
+  100% {
+      transform: translate(0, 2px);
+  }
+
+  10%,
+  40%,
+  70% {
+      transform: translate(0, -3px);
+  }
+
+  20%,
+  50%,
+  80% {
+      transform: translate(0, 0px);
+  }
+
+  30%,
+  60%,
+  90% {
+      transform: translate(0, 3px);
+  }
+}
+
+/*
+* Styles for the Score Panel
+*/
+
+.score-panel {
+  text-align: left;
+  width: 345px;
+  margin-bottom: 10px;
+}
+
+.score-panel .stars {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+
+.score-panel .stars li {
+  list-style: none;
+  display: inline-block;
+}
+
+.score-panel .restart {
+  float: right;
+  cursor: pointer;
+  color:orangered;
+}
+/* star color*/
+.fa-star {
+color:  #f5dc4e;
+}
+/*timer layout*/
+.timer {
+display: inline-block;
+margin: 2px;
+padding-left: 20px;
+}
+
+
+/* Styles for congratulations modal when game is completed*/
+#dialogBox{
+  width: 20em;
+}
+#dialogBox button {
+  padding: 1em;
+  background-color: steelblue;
+  color: white;
+  font-size: 1em;
+}
+
+/* Responsive for game */
+@media screen and (max-width: 600px) {
+
+  /*
+   * Score panel
+   */
+
+   .score-panel {
+    text-align: left;
+    width: 390px;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+  /*
+   * Main deck
+   */
+
+  .deck {
+    width: 400px;
+    min-height: 410px;
+    padding: 20px;
+  }
+
+  .deck .card {
+    height: 90px;
+    width: 90px;
+  }
+
+  .deck .card.show {
+    font-size: 18px;
+  }
+
+  @media screen and (max-width: 450px) {
+
+    .material-icons {
+      font-size: 24px;
+    }
+
+    /*
+     * Main deck
+     */
+
+    .deck {
+      width: 300px;
+      min-height: 310px;
+      box-shadow: 6px 7px 10px 0 rgba(46, 61, 73, 0.5);
+      padding: 10px;
+    }
+
+    .deck .card {
+      height: 70px;
+      width: 70px;
+    }
+
+    .deck .card.show {
+      font-size: 18px;
+    }
+
+    .score-panel {
+      padding: 0 0 0 1em;
+    }
+
+    /*
+     * Score panel
+     */
+
+     .score-panel {
+      text-align: left;
+      width: 280px;
+      margin-bottom: 10px;
+      font-size: 1em;
+  }
+    .score-panel .restart {
+      float: right;
+      cursor: pointer;
+    }
+
+    .score-panel .timer {
+      margin-left: 3em;
+    }
+  }
+
+}
+#star-record {
+  display: inline-block;
+  
+}
+#star-record li {
+  list-style: none;
+  display: inline-block;
+}
